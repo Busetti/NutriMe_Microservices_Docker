@@ -1,0 +1,50 @@
+<div class="container-fluid" style="height: 100vh;">
+    <div class="row" style="height: 100vh;">
+        <div class="bg-image">
+            <mat-card >
+                <form #myForm="ngForm" (ngSubmit)="signIn()">
+                    <div class="row">
+
+                        <h5 style="text-align: left; padding-bottom: 10px;">Log in</h5>
+
+                        <mat-form-field appearance="outline" style="width: 100%;">
+                            <mat-label>Email</mat-label>
+                            <input matInput placeholder="" name="emailId" minlength="10" #emailId="ngModel"
+                                [(ngModel)]="user.emailId" required pattern="^[a-z0-9._%+-]+@[a-z0-9.-]+\.[a-z]{2,4}$">
+                            <mat-error *ngIf="emailId.invalid && (emailId.dirty || emailId.touched)">
+                                <div *ngIf="emailId.errors.required">
+                                    Email is mandatory.
+                                </div>
+                                <div *ngIf="emailId.errors.pattern">
+                                    Email id not valid.
+                                </div>
+                            </mat-error>
+                        </mat-form-field>
+
+                        <mat-form-field appearance="outline" style="width: 100%;">
+                            <mat-label>Password</mat-label>
+                            <input matInput placeholder="" type="password" name="password" minlength="8"
+                                #password="ngModel" [(ngModel)]="user.password" required>
+                            <mat-error *ngIf="password.invalid && (password.dirty || password.touched)">
+                                <div *ngIf="password.errors.required">
+                                    Password is mandatory.
+                                </div>
+                                <div *ngIf="password.errors.minlength">
+                                    Password must be at least 8 characters long.
+                                </div>
+                            </mat-error>
+                        </mat-form-field>
+
+                        <div style="padding-top: 10px; text-align: left;">
+                            <button mat-raised-button color="primary" type="submit" [disabled]="!myForm.valid">
+                                SIGN IN</button>
+                            <span style="margin: 10px;"><a routerLink="/forgotpassword">Forgot Password</a></span><br><br>
+                            <span>Don't have an account? <a routerLink="/signup">Sign Up</a> </span>
+                        </div>
+                        
+                    </div>
+                </form>
+            </mat-card>
+        </div>
+    </div>
+</div>

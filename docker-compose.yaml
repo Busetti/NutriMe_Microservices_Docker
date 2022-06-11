@@ -1,0 +1,130 @@
+version: '3.5'
+
+services:
+  zipkin-server:
+    image: openzipkin/zipkin
+    ports:
+      - "9411:9411"
+  mysql:
+    image: mysql:latest
+    container_name: mysqldb
+    ports:
+      - 3306:3306
+    environment:
+      MYSQL_DATABASE: nutritionist_db
+      MYSQL_ROOT_PASSWORD: password
+      MYSQL_ROOT_USER: root
+    restart: always
+    healthcheck:
+      test: [ "CMD", "mysql" ,"-u", "root", "-ppassword" ]
+      timeout: 20s
+      retries: 10
+
+  mongo:
+    image: mongo:latest
+    container_name: mongo
+    ports:
+      - 27017:27017
+
+  eurekaservice:
+    image: eurekaservice:1.0
+    build: ./nutritionist-discovery
+    container_name: eurekaservice
+    # network_mode: host
+    ports:
+      - 8761:8761
+    environment:
+      EUREKA_SERVER_PORT: 8761
+      
+  apigateway:
+    image: apigateway:1.0
+    build: ./nutritionist-gateway
+    container_name: apigateway_container
+    # network_mode: host
+    ports:
+      - 8080:8080
+    environment:
+      API_GATEWAY_PORT: 8080
+      # Docker Container Name
+      EUREKA_SERVER_IP: eurekaservice
+      EUREKA_SERVER_PORT: 8761
+    restart: always
+    depends_on:
+      - eurekaservice
+      
+  searchservice:
+    image: searchservice:1.0
+    build: ./nutritionist-search
+    container_name: searchservice
+    # network_mode: host
+    ports:
+      - 9001:9001
+    environment:
+      # Docker Container Name
+      EUREKA_SERVER_IP: eurekaservice
+      EUREKA_SERVER_PORT: 8761
+      ZIPKIN_SERVER_IP: zipkin-server
+    depends_on:
+      - eurekaservice
+      - apigateway
+      
+  userservice:
+    image: userservice:1.0
+    build: ./nutritionist-user
+    container_name: userservice_container
+    # network_mode: host
+    ports:
+      - 8001:8001
+    environment:
+      MONGO_URI: mongodb://mongo:27017/nutritionist-user
+      EUREKA_SERVER_IP: eurekaservice
+      EUREKA_SERVER_PORT: 8761
+    depends_on:
+      - mongo
+      - eurekaservice
+      - apigateway
+      
+
+  favouriteservice:
+    image: favouriteservice:1.0
+    build: ./nutritionist-favourites
+    container_name: favouriteservice
+    # network_mode: host
+    ports:
+      - 9002:9002
+    environment:
+      MYSQL_URL: jdbc:mysql://mysqldb:3306/nutritionist_db
+      MYSQL_USERNAME: root
+      MYSQL_PASSWORD: password
+      EUREKA_SERVER_IP: eurekaservice
+      EUREKA_SERVER_PORT: 8761
+      SEARCH_SERVICE_IP: searchservice
+      ZIPKIN_SERVER_IP: zipkin-server
+    depends_on:
+      - eurekaservice
+      - apigateway
+      - searchservice  
+      - mysql
+    restart: always  
+      
+  mealservice:
+    image: mealservice:1.0
+    build: ./nutritionist-meal
+    container_name: mealservice
+    # network_mode: host
+    ports:
+      - 9003:9003
+    environment:
+      MYSQL_URL: jdbc:mysql://mysqldb:3306/nutritionist_db
+      MYSQL_USERNAME: root
+      MYSQL_PASSWORD: password
+      EUREKA_SERVER_IP: eurekaservice
+      EUREKA_SERVER_PORT: 8761
+      SEARCH_SERVICE_IP: searchservice
+      ZIPKIN_SERVER_IP: zipkin-server
+    depends_on:
+      - eurekaservice
+      - apigateway
+      - searchservice  
+      - mysql
+    restart: always

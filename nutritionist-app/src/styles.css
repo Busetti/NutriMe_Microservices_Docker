@@ -1,0 +1,27 @@
+/* You can add global styles to this file, and also import other style files */
+html,
+body {
+    height: 100%;
+}
+
+body {
+    margin: 0;
+    font-family: Roboto, "Helvetica Neue", sans-serif;
+}
+
+.lead-button {
+    color: #124e96 !important;
+    border-color: #124e96 !important;
+}
+
+.lead-button:hover {
+    background-color: #124e96 !important;
+    border-color: #124e96 !important;
+    color: #fff !important;
+}
+
+.backdropBackground {
+    filter: blur(20px);
+    background-color: #cccbcb;
+    opacity: 0.7 !important;
+}

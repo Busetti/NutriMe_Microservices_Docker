@@ -1,0 +1,54 @@
+<div class="container-fluid">
+  <div class="row" style="padding: 20px; ">
+    <h4>Search Your Favourite Food</h4>
+    <div class="col-8" style="padding: 10px; display: flex; gap: 20px;">
+      <mat-toolbar>
+        <mat-form-field style="width: 100%;font-size: large;" floatLabel='never' appearance="none">
+          <input matInput autocomplete="off" placeholder="e.g. Apple or Pizza" [(ngModel)]="foodInp" name="foodInp">
+        </mat-form-field>
+      </mat-toolbar>
+      <button type="button" mat-raised-button color="warn" (click)="searchFood()"
+        class="button-position btn-EF4056">Search
+        Food</button>
+    </div>
+  </div>
+  <div class="row" *ngIf="loading">
+    <div style="text-align: center; line-height: 150px;">
+      <img src="../../../assets/images/image_processing20200416-24394-lw2inn.gif" alt="loading.."
+        style="height: 250px; width: 250px;">
+    </div>
+  </div>
+  <div class="row" *ngIf="foodResponse">
+    <div class="col-md-3 col-lg-3 col-sm-6" style="padding-top: 20px;" *ngFor="let food of foodResponse.foods">
+      <div class="card card-1">
+        <div style="display: flex; justify-content: space-between; margin: 25px 25px 0px 25px; font-weight: bold;">
+          <h6><b>{{food.description}}</b></h6>
+          <span class="favouri" (click)="isFavoritee(food.fdcId, event)" data-toggle="tooltip" data-placement="bottom"
+            title="Manage Favorites">
+            <i class="bi"
+              [ngClass]="{'bi-heart filled-empty' : !isFavorite[food.fdcId], 'bi-heart-fill filled-icon': isFavorite[food.fdcId] }"></i>
+          </span>
+        </div>
+        <div class="card-body" style="padding: 10px 25px;">
+          <p class="card-text"><b style="color: #124E96; margin-right: 5px;">Category</b>{{food.foodCategory || ' - NA'}}</p>
+          <p class="card-text"><b style="color: #EF4056; margin-right: 5px;">Brand</b>{{food.brandOwner || ' - NA' }}</p>
+          <div *ngFor="let nutrient of food.foodNutrients">
+            <span *ngIf="nutrient.nutrientName === 'Protein'" class="card-text">Protein: {{nutrient.value}}
+              {{nutrient.unitName}}</span>
+            <span *ngIf="nutrient.nutrientName === 'Carbohydrate, by difference'" class="card-text">Carbohydrate:
+              {{nutrient.value}}
+              {{nutrient.unitName}}</span>
+            <span *ngIf="nutrient.nutrientName === 'Energy'" class="card-text">Energy: {{nutrient.value}}
+              {{nutrient.unitName}}</span>
+          </div>
+          <div style="display: flex; gap: 10px;">
+            <button type="button" mat-raised-button color="primary" (click)="addMeal(food)"
+              class="button-position btn-124E96" style="margin-bottom: 20px;">Add Meal</button>
+            <button type="button" mat-stroked-button (click)="openDialog(food)" class="button-position"
+              style="margin-bottom: 20px;">View More</button>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>

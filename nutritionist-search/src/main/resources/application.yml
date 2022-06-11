@@ -1,0 +1,26 @@
+server:
+  port: 9001
+spring:
+  application:
+    name: search-service
+  zipkin:
+    enabled: true
+    base-url: http://${ZIPKIN_SERVER_IP:localhost}:9411
+eureka:
+  client:
+    fetchRegistry: true
+    registerWithEureka: true
+    serviceUrl:
+      defaultZone: http://${EUREKA_SERVER_IP:localhost}:${EUREKA_SERVER_PORT:8761}/eureka
+      
+# Hide startup logs
+logging:
+  level:
+    org:
+      springframework:
+        cache: TRACE
+        
+nutritionist:
+  foodsearch:
+    api:  https://api.nal.usda.gov/fdc/v1
+    secretKey: tAvxdFiv9ILykefVSw1vf55w8Tpbvomjn2b25Iju

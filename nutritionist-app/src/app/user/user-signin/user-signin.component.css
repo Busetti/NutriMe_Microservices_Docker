@@ -1,0 +1,16 @@
+.bg-image {
+    background-image: url(src/assets/images/fruit1.jpg);
+    background-position: center;
+    background-repeat: no-repeat;
+    background-size: cover;
+    height: auto;
+}
+
+.mat-card {
+    background-color: white;
+    padding: 30px;
+    margin: 15vh auto;
+    width: 40%;
+    vertical-align: middle;
+    font-size: 14px;
+}

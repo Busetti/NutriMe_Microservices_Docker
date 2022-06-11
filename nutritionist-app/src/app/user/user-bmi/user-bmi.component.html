@@ -1,0 +1,67 @@
+<div class="container-fluid">
+    <p style="font-size: 24px;"><b>BMI Calculator</b></p>
+    <div class="row">
+
+        <div class="col-sm-12 col-md-5">
+            <form #myForm="ngForm" (ngSubmit)="calculateBmi()" style="margin-top: 10px; margin-right: 10px;">
+
+                <mat-form-field appearance="fill" style="width: 100%;">
+                    <mat-label>Height in cm</mat-label>
+                    <input matInput placeholder="" name="height" [(ngModel)]="height" required pattern=^[0-9]{1,4}$>
+                    <mat-hint></mat-hint>
+                    <mat-error *ngIf="height.invalid && (height.dirty || height.touched)">
+                        <div *ngIf="height.errors.required">
+                            Height is mandatory.
+                        </div>
+                    </mat-error>
+                </mat-form-field><br>
+
+                <mat-form-field appearance="fill" style="width: 100%;">
+                    <mat-label>Weight in kg</mat-label>
+                    <input matInput placeholder="" name="weight" [(ngModel)]="weight" required pattern=^[0-9]{1,4}$>
+                    <mat-hint></mat-hint>
+                    <mat-error *ngIf="weight.invalid && (weight.dirty || weight.touched)">
+                        <div *ngIf="weight.errors.required">
+                            Weight is mandatory.
+                        </div>
+                    </mat-error>
+                </mat-form-field>
+
+                <div style="padding-top: 10px;">
+                    <button mat-raised-button color="primary" type="submit" [disabled]="!myForm.valid">
+                        Calculate BMI</button>
+                </div>
+
+            </form>
+        </div>
+        <div class="col-sm-12 col-md-5">
+            <mat-card style="background-color:#f2f290; width: 90%;">
+                <mat-card-content>
+                    <p style="font-size: 18px;">BMI Result</p>
+                    <p><b>BMI</b> : {{result}}</p>
+                    <p><b>Category</b> : {{resultMessage}}</p>
+                    <p><b>Healthy BMI range</b> : 18.5 kg/m2 - 25 kg/m2</p>
+                </mat-card-content>
+            </mat-card>
+        </div>
+    </div>
+
+    <div class="row" style="padding-top: 50px; padding-left: 10px;">
+        <table mat-table [dataSource]="dataSource" class="mat-elevation-z8"
+            style="width: 100%; background-color:#c8e4f9;">
+            <ng-container matColumnDef="category">
+                <th mat-header-cell *matHeaderCellDef> Category </th>
+                <td mat-cell *matCellDef="let element"> {{element.category}} </td>
+            </ng-container>
+
+            <ng-container matColumnDef="range">
+                <th mat-header-cell *matHeaderCellDef> BMI range - kg/m2 </th>
+                <td mat-cell *matCellDef="let element"> {{element.range}} </td>
+            </ng-container>
+
+            <tr mat-header-row *matHeaderRowDef="displayedColumns"></tr>
+            <tr mat-row *matRowDef="let row; columns: displayedColumns;"></tr>
+
+        </table>
+    </div>
+</div>

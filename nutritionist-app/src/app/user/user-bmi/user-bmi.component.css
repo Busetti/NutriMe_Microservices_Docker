@@ -1,0 +1,11 @@
+.container-fluid {
+    padding: 100px;
+    padding-bottom: 20px;
+}
+
+.container-fluid:before {
+    box-sizing: border-box;
+    -moz-box-sizing: border-box;
+    -webkit-box-sizing: border-box;
+    -ms-box-sizing: border-box;
+}

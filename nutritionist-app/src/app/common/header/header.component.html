@@ -1,0 +1,57 @@
+<div class="container-fluid">
+
+    <!-- Header -->
+    <div class="row">
+        <div class="col-12">
+            <nav class="navbar fixed-top navbar-expand-lg navbar-light bg-124e96">
+                <div class="container-fluid">
+                    <a class="navbar-brand  fw-bold custom-font" href="#">Nutri Me</a>
+                    <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarNav"
+                        aria-controls="navbarNav" aria-expanded="false" aria-label="Toggle navigation">
+                        <span class="navbar-toggler-icon"></span>
+                    </button>
+                    <div class="collapse navbar-collapse" id="navbarNav">
+                        <ul class="navbar-nav  px-4 gap-3">
+                            <li class="nav-item" class="nav-item" routerLink="/home" routerLinkActive="active">
+                                <a class="nav-link active  text-white menu-header" aria-current="page">Home</a>
+                            </li>
+                            <li class="nav-item" routerLink="/search-food" routerLinkActive="active"
+                                *ngIf="authService.isUserLoggedIn()">
+                                <a class="nav-link  text-white menu-header">Search Food</a>
+                            </li>
+                            <li class="nav-item" *ngIf="authService.isUserLoggedIn()" routerLink="/favorites" routerLinkActive="active">
+                                <a class="nav-link  text-white menu-header">Favourites</a>
+                            </li>
+                            <li class="nav-item" *ngIf="authService.isUserLoggedIn()" routerLink="/mymeal" routerLinkActive="active">
+                                <a class="nav-link  text-white menu-header">My Meal</a>
+                            </li>
+                            <li class="nav-item" *ngIf="authService.isUserLoggedIn()" routerLink="/bmi" routerLinkActive="active">
+                                <a class="nav-link  text-white menu-header" >BMI</a>
+                            </li>
+                            <li class="nav-item" routerLink="/aboutus" routerLinkActive="active">
+                                <a class="nav-link  text-white menu-header">About Us</a>
+                            </li>
+                           
+                            <li class="nav-item" style="left: 92%; position: fixed;" routerLink="/signin" routerLinkActive="active" *ngIf="showSignIn && !authService.isUserLoggedIn()">
+                                <a class="nav-link  text-white menu-header">Sign In</a>
+                            </li>
+                        </ul>
+                    </div>
+
+                    <form class="d-flex   gap-3 d-none d-sm-none d-md-none d-lg-block" *ngIf="authService.isUserLoggedIn()">
+                        <div class="d-flex">
+                            <p class="text-white pt-3" style="font-weight: 500;">{{authService.getUsername()}}</p>
+                            <i class="bi bi-person-circle user-icon" data-toggle="tooltip" data-placement="bottom"
+                                title="{{username}}" [matMenuTriggerFor]="menu" style="padding-top: 12.5px;"></i>
+                        </div>
+                        <mat-menu #menu="matMenu">
+                            <button mat-menu-item (click)="displayProfile()">My Profile</button>
+                            <button mat-menu-item (click)="changePassword()">Change Password</button>
+                            <button mat-menu-item (click)="logout()">Sign Out</button>
+                        </mat-menu>
+                    </form>
+                </div>
+            </nav>
+        </div>
+    </div>
+</div>

@@ -1,0 +1,125 @@
+.container-fluid {
+    background-color: #FBFBFB !important;
+    padding-top: 70px;
+}
+
+.container-fluid:before {
+    box-sizing: border-box;
+    -moz-box-sizing: border-box;
+    -webkit-box-sizing: border-box;
+    -ms-box-sizing: border-box;
+    
+}
+.card-text{
+    font-size: small;
+}
+
+body{
+    font-family: 'Nunito', sans-serif;
+    padding: 30px;
+  }
+
+  mat-toolbar {
+    border-radius: 30px;
+    background-color: #fafafa;
+    border: 1px solid #fde2e2;
+    box-shadow: 15px 15px 40px 0px rgba(0,0,0,0.07), -15px -15px 40px 0px rgba(255,255,255,0.8);
+    width: 80%;
+    padding: 20px;
+  }
+  
+  .button-position{
+    height: 45px;
+    top: 12.5px;
+  }
+  .card{
+    border: none;
+    border-radius: 5px;
+    border: 1px solid #fcdddd;
+    background-color: white;
+    box-shadow: 15px 15px 40px 0px rgba(0,0,0,0.07), -15px -15px 40px 0px rgba(255,255,255,0.8);
+  }
+  
+
+  .card:hover {
+    box-shadow: inset -2px -2px 8px rgba(255, 255, 255, 1),
+          inset -2px -2px 12px rgba(255, 255, 255, 0.5),
+          inset 2px 2px 4px rgba(255, 255, 255, 0.1),
+          inset 2px 2px 8px rgba(0, 0, 0, 0.15);
+  }
+  
+  .card h3{
+    font-weight: 300;
+  }
+  
+  .card img{
+    position: absolute;
+    top: 15px;
+    right: 10px;
+    max-height: 120px;
+  }
+  
+  .card-1{
+    /* background-image: url(../../../assets/images/fruit1.jpg); */
+        background-repeat: no-repeat;
+      background-position: right;
+      background-size: 60px;
+  }
+
+
+@media (min-width: 576px) {
+    .card-columns {
+        column-count: 1;
+    }
+}
+
+@media (min-width: 768px) {
+    .card-columns {
+        column-count: 1;
+    }
+}
+
+@media (min-width: 992px) {
+    .card-columns {
+        column-count: 2;
+    }
+}
+
+@media (min-width: 1200px) {
+    .card-columns {
+        column-count: 3;
+    }
+}
+
+
+.btn-124E96{
+  background-color: #124E96;
+}
+
+
+.btn-EF4056{
+  background-color: #EF4056;
+}
+
+:host ::ng-deep .mat-slide-toggle.mat-checked .mat-slide-toggle-bar {
+  background-color: #f09aa5 !important;
+}
+
+:host ::ng-deep .mat-slide-toggle.mat-checked .mat-slide-toggle-thumb {
+  background-color: #EF4056 !important;
+}
+
+.filled-icon{
+  color: #EF4056;
+  font-size: larger;
+  cursor: pointer;
+}
+
+.filled-empty{
+  font-size: larger;
+  cursor: pointer;
+}
+
+.card-text{
+  font-size: 14px;
+}

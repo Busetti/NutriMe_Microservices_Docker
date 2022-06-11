@@ -1,0 +1,72 @@
+<div class="container-fluid">
+    <div class="row  m-4">
+        <h5>Your Favourite Food Items</h5>
+        <p *ngIf="favourites == '' " style="padding-top: 20px; color: #EF4056; margin-left: 32rem;">Your Favourite Food items are Empty</p>
+        <div class="col-sm-12 col-md-8 p-4">
+            <div class="row">
+                <div class="col-md-4 col-sm-12 p-3" *ngFor="let data of favourites">
+                    <mat-card style="cursor: pointer; border: 1px solid #e9aab3;">
+                        <mat-card-title style="font-size: large; color: #124E96;">{{data.description}}</mat-card-title>
+                                <mat-card-content  (click)="openDialog(data)">
+                                    <p>Brand Owner: {{data.brandOwner || ' NA'}}</p>
+                                    <p>Score: {{data.score}}</p>
+                                </mat-card-content>
+                                <mat-divider inset></mat-divider>
+                                <mat-card-actions>
+                                    <button mat-button matTooltip="Delete from favorite" (click)="deleteFavorite(data.id)"><i class="bi bi-trash3-fill" style="color: #EF4056; font-size: larger;"></i></button>
+                                    <button mat-button matTooltip="Add to Meal" (click)="addMeal(data)"><i class="bi bi-plus-circle" style="color: #124E96; font-size: larger;"></i></button>
+                                    
+                                </mat-card-actions>
+                    </mat-card>
+                </div>
+            </div>
+        </div>
+        <div class="col-sm-12 col-md-4 p-4">
+            <div class="row" *ngIf="loading">
+                <div style="text-align: center; line-height: 150px;">
+                    <img src="../../../assets/images/image_processing20200416-24394-lw2inn.gif" alt="loading.."
+                        style="height: 250px; width: 250px;">
+                </div>
+            </div>
+            <mat-card *ngIf="food && favourites != '' " style="background-color: rgb(255, 236, 129);">
+                <div style="display: flex; justify-content: space-between; padding-bottom: 10px;">
+                    <mat-card-title style="font-size: larger; color: #124E96;">{{food.description}} - {{food.fdcId}}</mat-card-title>
+                    <!-- <button mat-button matTooltip="Add to Meal" (click)="addMeal(food)"><i class="bi bi-plus-circle" style="color: #124E96; font-size: larger;"></i></button> -->
+                </div>
+                <mat-card-content>
+                    <p>Brand Owner: {{food.brandOwner}}</p>
+                </mat-card-content>
+
+                <table mat-table [dataSource]="dataSource" class="mat-elevation-z8">
+
+                    <!--- Note that these columns can be defined in any order.
+                          The actual rendered columns are set as a property on the row definition" -->
+                  
+                    <!-- Position Column -->
+                    <ng-container matColumnDef="name">
+                      <th mat-header-cell *matHeaderCellDef> Nutrient Name </th>
+                      <td mat-cell *matCellDef="let element"> {{element.name}} </td>
+                    </ng-container>
+                  
+                    <!-- Name Column -->
+                    <ng-container matColumnDef="amount">
+                      <th mat-header-cell *matHeaderCellDef> Value </th>
+                      <td mat-cell *matCellDef="let element"> {{element.amount}} </td>
+                    </ng-container>
+                  
+                    <!-- Weight Column -->
+                    <ng-container matColumnDef="unitName">
+                      <th mat-header-cell *matHeaderCellDef> Units </th>
+                      <td mat-cell *matCellDef="let element"> {{element.unitName}} </td>
+                    </ng-container>
+
+                  
+                    <tr mat-header-row *matHeaderRowDef="displayedColumns"></tr>
+                    <tr mat-row *matRowDef="let row; columns: displayedColumns;"></tr>
+                  </table>
+            </mat-card>
+        </div>
+    </div>
+
+
+</div>

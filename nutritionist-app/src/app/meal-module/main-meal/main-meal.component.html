@@ -1,0 +1,72 @@
+<div class="container-fluid">
+    <div class="row" style="padding: 90px 45px;">
+        <h5>Select & Analyze Meals</h5>
+        <div class="col-sm-12 col-md-6 col-lg-4 p-2">
+            <mat-card>
+                <p *ngIf="mealRes == '' " style="color: #EF4056;">Your Meal is Empty</p>
+                <form [formGroup]="mealForm" (ngSubmit)="onFormSubmit()">
+                    <mat-selection-list formControlName="selectedMeal">
+                        <mat-list-option *ngFor="let meal of mealRes" [value]="meal.fdcId">
+                            <div style="display: flex; gap: 20px; align-items: center; ">
+                                <i class="bi bi-trash3-fill" matTooltip="Remove from Meal"
+                                        style="color: #EF4056; font-size: medium;" (click)="deleteMeal(meal.id)"></i>
+                                <p style="color: cornflowerblue; margin-bottom: 0rem;">{{meal.description}}</p>
+                            </div>
+                        </mat-list-option>
+                    </mat-selection-list>
+                    <button *ngIf="mealRes != '' " mat-raised-button color="warn" class="m-3" style="background-color: #124E96;">Analyze</button>
+                </form>
+            </mat-card>
+        </div>
+        <div class="col-sm-12 col-md-6 col-lg-4 p-2">
+            <div class="row" *ngIf="reportLoading">
+                <div style="text-align: center; line-height: 150px;">
+                    <img src="../../../assets/images/image_processing20200416-24394-lw2inn.gif" alt="loading.."
+                        style="height: 250px; width: 250px;">
+                </div>
+            </div>
+            <mat-card *ngIf="report && mealRes != '' ">
+                <table mat-table [dataSource]="dataSource">
+                    <!-- Key Column -->
+                    <ng-container matColumnDef="key">
+                        <th mat-header-cell *matHeaderCellDef>Nutrient</th>
+                        <td mat-cell *matCellDef="let element">{{element.key}}</td>
+                    </ng-container>
+
+                    <!-- Value Column -->
+                    <ng-container matColumnDef="value">
+                        <th mat-header-cell *matHeaderCellDef>Value</th>
+                        <td mat-cell *matCellDef="let element">{{element.value}}</td>
+                    </ng-container>
+
+                    <tr mat-header-row *matHeaderRowDef="displayedColumns"></tr>
+                    <tr mat-row *matRowDef="let row; columns: displayedColumns;"></tr>
+                </table>
+            </mat-card>
+        </div>
+        <div class="col-sm-12 col-md-6 col-lg-4 p-2" *ngIf="report && mealRes != ''">
+            <div class="row">
+                <div class="col-6">
+                    <mat-card style="background-color: #30629ef6; color: #fff;">
+                        <p>Energy (KCAL)</p>
+                        <div class="d-flex">
+                            <h1 class="m-0">{{energy}}</h1>
+                        </div>
+                    </mat-card>
+                </div>
+                <div class="col-6">
+                    <mat-card style="background-color: #00a79d; color: #fff;">
+                        <p>Protein (G)</p>
+                        <div class="d-flex">
+                            <h1 class="m-0">{{protein}}</h1>
+                        </div>
+                    </mat-card>
+                </div>
+                <div class="col-12" >
+                    <h6 style="color: #EF4056;" class="p-3">Tip of the Day...</h6>
+                    <img src="../../../assets/images/714529d2c4fb555fabe48f8e65db3a20.jpg" alt="" style="height: 270px; width: 270px;">
+                </div>
+            </div>
+        </div>
+    </div>
+</div>

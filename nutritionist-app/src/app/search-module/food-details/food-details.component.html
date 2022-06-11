@@ -1,0 +1,86 @@
+<mat-dialog-content class="mat-typography">
+    <div class="container-fluid">
+        <div class="row">
+            <div class="col-6">
+                <mat-card>
+                    <mat-card-title style="color: #124E96;">{{data.food.description}}</mat-card-title>
+                    <mat-card-subtitle>Brand Owner: {{data.food.brandOwner}}</mat-card-subtitle>
+                    <p>FdcId: {{data.food.fdcId}}</p>
+                    <p>Data Type: {{data.food.dataType}}</p>
+                    <p>Market Country: {{data.food.marketCountry}}</p>
+                    <p>Category: {{data.food.foodCategory}}</p>
+                    <p>Score: {{data.food.score}}</p>
+                    <p>Ingredients: {{data.food.ingredients | lowercase }}</p>
+                    <mat-card-actions>
+                        <button type="button" mat-raised-button color="primary" class="btn-124E96" (click)="addMeal(data.food)">Add Meal</button>
+                        <button type="button" mat-raised-button color="primary" class="btn-EF4056" (click)="addFavorite(data.food)">Add Favourites</button>
+                    </mat-card-actions>
+                </mat-card>
+            </div>
+            <div class="col-6">
+                <div class="row">
+                    <div class="col-4">
+                        <mat-card style="background-color: #30629ef6; color: #fff;">
+                            <p>Protien</p>
+                            <div class="d-flex">
+                                <h1 class="m-0">{{protien.value}}</h1><span>{{protien.unitName | lowercase}}</span>
+                            </div>
+                        </mat-card>
+                    </div>
+                    <div class="col-4">
+                        <mat-card style="background-color: #00a79d; color: #fff;">
+                            <p>Energy</p>
+                            <div class="d-flex">
+                                <h1 class="m-0">{{energy.value}}</h1><span>{{energy.unitName | lowercase}}</span>
+                            </div>
+                        </mat-card>
+                    </div>
+                    <div class="col-4">
+                        <mat-card style="background-color: #f58194; color: #fff;">
+                            <p>Carbohydrate</p>
+                            <div class="d-flex">
+                                <h1 class="m-0">{{carbohydrate.value}}</h1><span>{{carbohydrate.unitName | lowercase}}</span>
+                            </div>
+                        </mat-card>
+                    </div>
+                </div>
+                <div class="row">
+                    <div class="col-12">
+                        <table mat-table [dataSource]="dataSource" class="mat-elevation-z8">
+
+                            <!--- Note that these columns can be defined in any order.
+                                  The actual rendered columns are set as a property on the row definition" -->
+                          
+                            <!-- Position Column -->
+                            <ng-container matColumnDef="nutrientName">
+                              <th mat-header-cell *matHeaderCellDef> Nutrient Name </th>
+                              <td mat-cell *matCellDef="let element"> {{element.nutrientName}} </td>
+                            </ng-container>
+                          
+                            <!-- Name Column -->
+                            <ng-container matColumnDef="value">
+                              <th mat-header-cell *matHeaderCellDef> Value </th>
+                              <td mat-cell *matCellDef="let element"> {{element.value}} </td>
+                            </ng-container>
+                          
+                            <!-- Weight Column -->
+                            <ng-container matColumnDef="unitName">
+                              <th mat-header-cell *matHeaderCellDef> Units </th>
+                              <td mat-cell *matCellDef="let element"> {{element.unitName}} </td>
+                            </ng-container>
+        
+                          
+                            <tr mat-header-row *matHeaderRowDef="displayedColumns"></tr>
+                            <tr mat-row *matRowDef="let row; columns: displayedColumns;"></tr>
+                          </table>
+                                                    
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+
+</mat-dialog-content>
+<mat-dialog-actions align="end">
+    <button mat-button mat-dialog-close>Cancel</button>
+</mat-dialog-actions>

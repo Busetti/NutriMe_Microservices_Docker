@@ -1,0 +1,118 @@
+
+.bg-124e96 {
+    background-color: #124e96;
+}
+
+.bg-daeaf6 {
+    background-color: #daeaf6;
+}
+
+.btn-ff008e {
+    background-color: #ff008e;
+    color: #fff;
+
+}
+
+.color-ff008e{
+color: #ff008e;
+}
+.btn-ff008e:hover {
+    background-color: #ff008e;
+    color: #fff;
+    font-weight: bolder;
+}
+
+body {
+    background-color: #daeaf6;
+}
+
+.navbar-nav>li {
+    padding-right: 20px;
+}
+
+.user-icon {
+    font-size: 15px;
+    color: white;
+    padding-left: 20px;
+    cursor: pointer;
+}
+
+.navbar {
+    padding: 5px 20px 5px 20px;
+}
+
+.custom-font{
+    font-size: x-large;
+    color: #ffff14 !important;
+    font-style: italic;
+}
+
+.text-over-image{
+    z-index: 100;
+    position: absolute; 
+    top: 80px; 
+    left: 0; 
+    width: 100%; 
+    color: #fff;
+    font-size: 80px;
+    font-style: italic;
+    text-align: center;
+    vertical-align: top;
+    font-weight: bold;
+}
+
+.main-page-image {
+    position: relative; 
+   width: 100%; 
+   opacity: 0.9;
+   border-radius: 3px
+  }
+
+  .feature-icon {
+    font-size: 60px;
+    text-align: center;
+    cursor: pointer;
+    color: #ff008e;
+}
+
+.col-sm-6{
+    margin-top: 1rem;
+}
+
+.footer-icon{
+    font-size: 20px;
+}
+
+.footer-icon:hover{
+    color: #124e96;
+    cursor: pointer;
+}
+
+.menu-header{
+    font-weight: 600;
+}
+
+.menu-header:hover{
+    color: #ffff14 !important;
+}
+
+.navbar .navbar-toggler {
+    background-color: white !important;
+    border: 2px solid white;
+    padding: 2px;
+ }
+
+ .navbar-toggler:focus {
+    text-decoration: none;
+    outline: 0;
+    box-shadow: 0 !important;
+}
+
+.footer {
+    position: fixed;
+    left: 0;
+    bottom: 0;
+    width: 100%;
+  }
+
+  .clear { clear: both; height: 70px; }

@@ -1,0 +1,132 @@
+
+.imgComponentName {
+    background-image: url("../../../assets/images/fruit.jpg");
+    background-repeat: no-repeat;
+    background-size: 100%;
+    opacity: 0.84;
+    position: fixed;
+    top: 60px;
+    left: 0px;
+    z-index: 200;
+    width: 100%;
+    height: 30px;
+}
+
+.componentName {
+    padding-left: 10px;
+    padding-top: 2px;
+    font-size: 25px;
+}
+
+.holderCard {
+    background-color: rgb(236, 236, 248);
+    min-height: 10rem;
+}
+
+.hvr-bounce-in {
+    display: inline-block;
+    vertical-align: middle;
+    -webkit-transform: perspective(1px) translateZ(0);
+    transform: perspective(1px) translateZ(0);
+    box-shadow: 0 0 1px rgba(0, 0, 0, 0);
+    -webkit-transition-duration: 0.5s;
+    transition-duration: 0.5s;
+}
+
+.hvr-bounce-in:hover,
+.hvr-bounce-in:focus,
+.hvr-bounce-in:active {
+    -webkit-transform: scale(1.2);
+    transform: scale(1.2);
+    -webkit-transition-timing-function: cubic-bezier(0.47, 2.02, 0.31, -0.36);
+    transition-timing-function: cubic-bezier(0.47, 2.02, 0.31, -0.36);
+    z-index: 1;
+}
+
+.dot {
+    height: 250px;
+    width: 250px;
+    background-color: white;
+    border-radius: 50%;
+    top: 5%;
+    display: inline-block;
+}
+
+.profile-Icon {
+    font-size: 80px;
+    left: 38%;
+    position: relative;
+    top: 40px;
+    color: black;
+}
+
+.nameComponent {
+    text-align: center;
+    position: relative;
+    top: 40px;
+    color: #124E96;
+    font-size: 16px;
+}
+
+.mail-Icon {
+    position: relative;
+    top: 33px;
+    left: 38px;
+    color: black;
+    font-size: medium;
+}
+
+.mail-Link {
+    font-family: Georgia, 'Times New Roman', Times, serif;
+    color: black;
+    font-style: italic;
+    position: relative;
+    top: 30px;
+    left: 40px;
+}
+
+.footerContent {
+    color: #FF304F;
+    font-size: medium;
+    font-weight: bold;
+    position: relative;
+    top: 60px;
+    left: 90px;
+}
+
+img {
+    border-radius: 50%;
+  }
+
+  .support{
+      min-height: 200px;
+      background-color: bisque;
+  }
+
+  .divider {
+    background-color: #ca6060;
+    height: 1px;
+    width: 180px;
+    margin-top: 10px;
+  }
+  .name {
+    color: #404245;
+    font-size: 36px;
+    font-weight: 600;
+    margin-top: 16px;
+  }
+  .title {
+    color: #6e6e6e;
+    font-family: arial;
+    font-size: 14px;
+    font-style: italic;
+    margin-top: 4px;
+  }
+  
+  img:hover
+  {
+      cursor: pointer;
+    -moz-box-shadow: 0 0 10px #ca6060;
+    -webkit-box-shadow: 0 0 10px #ca6060;
+    box-shadow: 0 0 10px #6e6e6e;
+  }

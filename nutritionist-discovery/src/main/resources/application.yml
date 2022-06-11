@@ -1,0 +1,18 @@
+server:
+  port: ${EUREKA_SERVER_PORT:8761}
+spring:
+  application:
+    name: eureka-service
+eureka:
+  client:
+    fetchRegistry: false
+    registerWithEureka: false
+
+
+# Avoid some debugging logs at startup
+logging:
+  level:
+    org:
+      springframework:
+        boot: INFO
+        web: INFO

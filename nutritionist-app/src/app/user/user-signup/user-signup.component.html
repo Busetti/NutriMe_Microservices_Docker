@@ -1,0 +1,133 @@
+<div class="container-fluid" style="height: 100vh; ">
+  <div class="row" style="height: 100vh;">
+    <div class="bg-image">
+
+      <mat-card>
+        <form #myForm="ngForm" (ngSubmit)="saveUser()">
+          <div class="row">
+
+            <h5 style="text-align: left; padding-bottom: 10px;">Sign up (or) Register</h5>
+
+            <div class="col-6">
+              <mat-form-field appearance="outline" style="width: 90%;">
+                <mat-label>First Name</mat-label>
+                <input matInput placeholder="" name="firstName" minlength="4" #firstName="ngModel"
+                  [(ngModel)]="user.firstName" required pattern=^[A-Za-z]{4,}$>
+                <mat-hint></mat-hint>
+                <mat-error *ngIf="firstName.invalid && (firstName.dirty || firstName.touched)">
+                  <div *ngIf="firstName.errors.required">
+                    First name is mandatory.
+                  </div>
+                  <div *ngIf="firstName.errors.minlength">
+                    First name must be at least 4 characters long.
+                  </div>
+                </mat-error>
+              </mat-form-field>
+
+              <mat-form-field appearance="outline" style="width: 90%;">
+                <mat-label>Last Name</mat-label>
+                <input matInput placeholder="" name="lastName" minlength="4" #lastName="ngModel"
+                  [(ngModel)]="user.lastName" required pattern=^[A-Za-z]{4,}$>
+                <mat-hint></mat-hint>
+                <mat-error *ngIf="lastName.invalid && (lastName.dirty || lastName.touched)">
+                  <div *ngIf="lastName.errors.required">
+                    Last name is mandatory.
+                  </div>
+                  <div *ngIf="lastName.errors.minlength">
+                    Last name must be at least 4 characters long.
+                  </div>
+                </mat-error>
+              </mat-form-field>
+
+              <mat-form-field appearance="outline" style="width: 90%;">
+                <mat-label>Email</mat-label>
+                <input matInput placeholder="" name="emailId" minlength="10" #emailId="ngModel"
+                  [(ngModel)]="user.emailId" required pattern="^[a-z0-9._%+-]+@[a-z0-9.-]+\.[a-z]{2,4}$">
+                <mat-error *ngIf="emailId.invalid && (emailId.dirty || emailId.touched)">
+                  <div *ngIf="emailId.errors.required">
+                    Email is mandatory.
+                  </div>
+                  <div *ngIf="emailId.errors.pattern">
+                    Email id not valid.
+                  </div>
+                </mat-error>
+              </mat-form-field>
+
+              <mat-form-field appearance="outline" style="width: 90%;">
+                <mat-label>Password</mat-label>
+                <input matInput placeholder="" type="password" name="password" minlength="8" #password="ngModel"
+                  [(ngModel)]="user.password" required>
+                <mat-error *ngIf="password.invalid && (password.dirty || password.touched)">
+                  <div *ngIf="password.errors.required">
+                    Password is mandatory.
+                  </div>
+                  <div *ngIf="password.errors.minlength">
+                    Password must be at least 8 characters long.
+                  </div>
+                </mat-error>
+              </mat-form-field>
+            </div>
+
+            <div class="col-6">
+
+              <mat-form-field appearance="outline" style="width: 90%;">
+                <mat-label>Age</mat-label>
+                <input matInput placeholder="" name="age" #age="ngModel" [(ngModel)]="user.age" required
+                  pattern=^[0-9]{1,4}$>
+                <mat-hint></mat-hint>
+                <mat-error *ngIf="age.invalid && (age.dirty || age.touched)">
+                  <div *ngIf="age.errors.required">
+                    Age is mandatory.
+                  </div>
+                </mat-error>
+              </mat-form-field>
+
+              <mat-form-field appearance="outline" style="width: 90%;">
+                <mat-label>Height</mat-label>
+                <input matInput placeholder="" name="height" #height="ngModel" [(ngModel)]="user.height" required
+                  pattern=^[0-9]{1,4}$>
+                <mat-hint></mat-hint>
+                <mat-error *ngIf="height.invalid && (height.dirty || height.touched)">
+                  <div *ngIf="height.errors.required">
+                    Height is mandatory.
+                  </div>
+                </mat-error>
+              </mat-form-field>
+
+              <mat-form-field appearance="outline" style="width: 90%;">
+                <mat-label>Weight</mat-label>
+                <input matInput placeholder="" name="weight" #weight="ngModel" [(ngModel)]="user.weight" required
+                  pattern=^[0-9]{1,4}$>
+                <mat-hint></mat-hint>
+                <mat-error *ngIf="weight.invalid && (weight.dirty || weight.touched)">
+                  <div *ngIf="weight.errors.required">
+                    Weight is mandatory.
+                  </div>
+                </mat-error>
+              </mat-form-field>
+
+              <mat-form-field appearance="outline" style="width: 90%;">
+                <mat-label>Confirm Password</mat-label>
+                <input matInput placeholder="" type="password" name="confirmpassword"  #confirmpassword="ngModel"
+                  [(ngModel)]="user.confirmpassword" pattern="{{ password.value }}" required>
+                <mat-error *ngIf="confirmpassword.invalid && (confirmpassword.dirty || confirmpassword.touched)">
+                  <div *ngIf="confirmpassword.errors.pattern">
+                    Password & Confirm Password does not match.
+                  </div>
+                </mat-error>
+              </mat-form-field>
+
+            </div>
+
+            <div style="padding-top: 10px; text-align: left;">
+              <button mat-raised-button color="primary" type="submit" [disabled]="!myForm.valid">
+                SIGN UP</button><br><br>
+              <span>Already have an account? <a routerLink="/signin">Sign In</a> </span>
+            </div>
+
+          </div>
+        </form>
+      </mat-card>
+    </div>
+  </div>
+</div>

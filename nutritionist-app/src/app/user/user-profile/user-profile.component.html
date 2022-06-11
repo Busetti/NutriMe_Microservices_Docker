@@ -1,0 +1,110 @@
+<div class="container-fluid">
+    <div class="d-flex flex-wrap justify-content-between align-items-center bg-white">
+        <div class="col-md-4 d-flex">
+            <span style="font-size: 24px; color: #124e96;"><b>My Profile</b></span>
+        </div>
+        <ul class="nav justify-content-end list-unstyled d-flex px-4 gap-3">
+            <li *ngIf="disableEditBt" class="ms-3"><a class="text-muted" (click)="enableEdit()"><i class="bi bi-pencil-fill profile-icon"></i></a>
+            </li>
+            <li class="ms-3"><a class="text-muted" [mat-dialog-close]><i class="bi bi-x-circle-fill profile-icon"></i></a>
+            </li>
+        </ul>
+    </div>
+    <form #myForm="ngForm" (ngSubmit)="updateUser()" style="padding-top: 10px;">
+        <div class="row">
+
+            <div class="col-6">
+                <mat-form-field appearance="fill" style="width: 100%;">
+                    <mat-label>First Name</mat-label>
+                    <input matInput placeholder="" name="firstName" minlength="4" #firstName="ngModel"
+                        [(ngModel)]="user.firstName" required pattern=^[A-Za-z]{4,}$ [readonly]="editForm"> 
+                    <mat-hint></mat-hint>
+                    <mat-error *ngIf="firstName.invalid && (firstName.dirty || firstName.touched)">
+                        <div *ngIf="firstName.errors.required">
+                            First name is mandatory.
+                        </div>
+                        <div *ngIf="firstName.errors.minlength">
+                            First name must be at least 4 characters long.
+                        </div>
+                    </mat-error>
+                </mat-form-field>
+
+                <mat-form-field appearance="fill" style="width: 100%;">
+                    <mat-label>Height</mat-label>
+                    <input matInput placeholder="" name="height" #height="ngModel" [(ngModel)]="user.height" required
+                        pattern=^[0-9]{1,4}$ [readonly]="editForm">
+                    <mat-hint></mat-hint>
+                    <mat-error *ngIf="height.invalid && (height.dirty || height.touched)">
+                        <div *ngIf="height.errors.required">
+                            Height is mandatory.
+                        </div>
+                    </mat-error>
+                </mat-form-field>
+
+                <mat-form-field appearance="fill" style="width: 100%;">
+                    <mat-label>Age</mat-label>
+                    <input matInput placeholder="" name="age" #age="ngModel" [(ngModel)]="user.age" required
+                        pattern=^[0-9]{1,4}$ [readonly]="editForm">
+                    <mat-hint></mat-hint>
+                    <mat-error *ngIf="age.invalid && (age.dirty || age.touched)">
+                        <div *ngIf="age.errors.required">
+                            Age is mandatory.
+                        </div>
+                    </mat-error>
+                </mat-form-field>
+               
+
+                <!-- <mat-form-field appearance="outline" style="width: 90%;">
+                    <mat-label>Email</mat-label>
+                    <input matInput placeholder="" name="emailId" minlength="10" #emailId="ngModel"
+                        [(ngModel)]="user.emailId" required pattern="^[a-z0-9._%+-]+@[a-z0-9.-]+\.[a-z]{2,4}$">
+                    <mat-error *ngIf="emailId.invalid && (emailId.dirty || emailId.touched)">
+                        <div *ngIf="emailId.errors.required">
+                            Email is mandatory.
+                        </div>
+                        <div *ngIf="emailId.errors.pattern">
+                            Email id not valid.
+                        </div>
+                    </mat-error>
+                </mat-form-field> -->
+
+            </div>
+
+            <div class="col-6">
+
+                <mat-form-field appearance="fill" style="width: 100%;">
+                    <mat-label>Last Name</mat-label>
+                    <input matInput placeholder="" name="lastName" minlength="4" #lastName="ngModel"
+                        [(ngModel)]="user.lastName" required pattern=^[A-Za-z]{4,}$ [readonly]="editForm">
+                    <mat-hint></mat-hint>
+                    <mat-error *ngIf="lastName.invalid && (lastName.dirty || lastName.touched)">
+                        <div *ngIf="lastName.errors.required">
+                            Last name is mandatory.
+                        </div>
+                        <div *ngIf="lastName.errors.minlength">
+                            Last name must be at least 4 characters long.
+                        </div>
+                    </mat-error>
+                </mat-form-field>
+
+                <mat-form-field appearance="fill" style="width: 100%;">
+                    <mat-label>Weight</mat-label>
+                    <input matInput placeholder="" name="weight" #weight="ngModel" [(ngModel)]="user.weight" required
+                        pattern=^[0-9]{1,4}$ [readonly]="editForm">
+                    <mat-hint></mat-hint>
+                    <mat-error *ngIf="weight.invalid && (weight.dirty || weight.touched)">
+                        <div *ngIf="weight.errors.required">
+                            Weight is mandatory.
+                        </div>
+                    </mat-error>
+                </mat-form-field>
+
+            </div>
+
+            <div style="padding-top: 10px; text-align: left;">
+                <button *ngIf="disableSaveBt" mat-raised-button color="primary" type="submit" [disabled]="!myForm.valid">
+                  SAVE</button>
+</div>
+        </div>
+    </form>
+</div>
